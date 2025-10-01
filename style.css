@@ -1,0 +1,287 @@
+:root {
+    --primary-purple: #7B2CBF;
+    --light-purple: #9D4EDD;
+    --dark-purple: #5A189A;
+    --background-color: #F7F8FC;
+    --card-background: #FFFFFF;
+    --text-color: #5A5A5A;
+    --heading-color: #333333;
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --border-radius: 16px;
+    --transition-smooth: all 0.3s ease-in-out;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header Clean */
+.header-clean {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #E9ECEF;
+}
+.dashboard-title {
+    font-weight: 700;
+    color: var(--primary-purple);
+    margin: 0;
+    font-size: 1.8rem;
+}
+.dashboard-subtitle {
+    margin: 0;
+    color: #999;
+    font-weight: 400;
+}
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.search-bar { max-width: 350px; }
+.search-bar .form-control, .search-bar .input-group-text {
+    border: 1px solid #E9ECEF;
+    background-color: #FDFDFD;
+    border-radius: 12px;
+    box-shadow: none;
+    transition: var(--transition-smooth);
+}
+.search-bar .form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.15);
+    border-color: var(--primary-purple);
+    background-color: #fff;
+}
+.search-bar .input-group-text { border-right: 0; background: transparent; }
+.search-bar .form-control { border-left: 0; }
+.btn-logout {
+    background-color: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    color: var(--text-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+}
+.btn-logout:hover {
+    background-color: var(--primary-purple);
+    color: white;
+    border-color: var(--primary-purple);
+}
+
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-medium);
+}
+.info-card .card-body { padding: 1.8rem; }
+.card-subtitle { font-size: 0.95rem; opacity: 0.8; }
+.card-title-value { font-size: 1.7rem; font-weight: 600; }
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-circle i { font-size: 1.8rem; }
+.bg-white-translucent { background-color: rgba(255, 255, 255, 0.2); }
+.text-white-75 { color: rgba(255, 255, 255, 0.75) !important; }
+
+/* Gradient Cards */
+.gradient-card-purple { background: linear-gradient(45deg, #C77DFF 0%, #7B2CBF 100%); }
+.gradient-card-blue { background: linear-gradient(45deg, #64B5F6 0%, #42A5F5 100%); }
+.gradient-card-red { background: linear-gradient(45deg, #EF5350 0%, #E53935 100%); }
+.gradient-card-green { background: linear-gradient(45deg, #81C784 0%, #66BB6A 100%); }
+.gradient-card-yellow { background: linear-gradient(45deg, #FFD54F 0%, #FFCA28 100%); }
+.gradient-card-orange { background: linear-gradient(45deg, #FFA726 0%, #FB8C00 100%); }
+.gradient-card-teal { background: linear-gradient(45deg, #26A69A 0%, #00897B 100%); }
+
+.data-card {
+    border: 1px solid #E9ECEF;
+    box-shadow: none;
+}
+.data-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-soft);
+}
+.card-title { font-weight: 600; color: var(--heading-color); }
+.filter-container { 
+    min-width: 250px;
+}
+.filter-container .form-select {
+    border-radius: 12px;
+}
+
+/* Table Styling */
+.table thead th {
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    border: 0;
+    padding: 1rem 1.2rem;
+}
+.table tbody tr {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    transition: var(--transition-smooth);
+}
+.table-hover > tbody > tr:hover {
+    background-color: #F8F9FF;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.table th, .table td { padding: 1.2rem; border-bottom: 5px solid var(--background-color); }
+.table-borderless tbody tr:last-child td { border-bottom: none; }
+.school-name-header { min-width: 300px; }
+
+.status-icon { font-size: 1.3rem; }
+.status-icon.implantado { color: #28a745; }
+.status-icon.planejamento { color: #ffc107; }
+.status-icon.autorizado { color: #17a2b8; }
+.status-icon.nao-se-aplica { color: #ADB5BD; }
+
+.btn-details {
+    background: linear-gradient(45deg, var(--light-purple) 0%, var(--primary-purple) 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(123, 44, 191, 0.2);
+    transition: var(--transition-smooth);
+}
+.btn-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(123, 44, 191, 0.3);
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: var(--shadow-medium);
+}
+.modal-header {
+    background-color: var(--background-color);
+    color: var(--primary-purple);
+    border-bottom: 1px solid #E9ECEF;
+    padding: 1.5rem;
+}
+.modal-title { font-weight: 700; }
+.modal-body { padding: 2rem; background-color: #fff; }
+
+.modal-footer {
+    background-color: var(--background-color);
+    border-top: 1px solid #E9ECEF;
+}
+.btn-print {
+    background-color: var(--primary-purple);
+    border-color: var(--primary-purple);
+}
+.btn-print:hover {
+    background-color: var(--dark-purple);
+    border-color: var(--dark-purple);
+}
+
+.detail-group h6 {
+    font-weight: 600;
+    color: var(--primary-purple);
+    border-bottom: 2px solid #E3D5F2;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.detail-group h6 i { font-size: 1.4rem; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
+.detail-item p { margin-bottom: 0.2rem; font-size: 0.85rem; color: #6c757d; }
+.detail-item span { font-weight: 600; color: var(--heading-color); font-size: 0.95rem; }
+.school-codes {
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.school-codes div { flex: 1; }
+.school-codes p { font-size: 0.8rem; margin: 0; color: #888; }
+.school-codes span { font-size: 1rem; font-weight: 600; color: var(--heading-color); }
+
+/* Mobile Responsiveness */
+@media (max-width: 991.98px) {
+    /* ... (outras regras responsivas) ... */
+}
+@media (max-width: 767.98px) {
+    /* ... (outras regras responsivas) ... */
+}
+
+
+/* --- NOVO: ESTILOS DE IMPRESSÃO --- */
+@media print {
+    /* Esconde tudo que não for para imprimir */
+    body > *:not(.modal) {
+        display: none !important;
+    }
+    .modal-header, .modal-footer, .btn-close {
+        display: none !important;
+    }
+
+    /* Garante que o modal e seu conteúdo fiquem visíveis */
+    .modal {
+        position: static !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+    .modal-dialog {
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+    .modal-content {
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .modal-body {
+        padding: 0 !important;
+    }
+
+    /* Melhora a legibilidade da impressão */
+    h4, h6, strong, span, p {
+        color: #000 !important;
+    }
+    .badge {
+        border: 1px solid #ccc;
+        background-color: #f8f9fa !important;
+    }
+    .school-codes {
+        background-color: #f8f9fa !important;
+        border: 1px solid #ccc;
+    }
+    .detail-group {
+        page-break-inside: avoid; /* Evita que os grupos de detalhes sejam cortados entre as páginas */
+    }
+    .row {
+        --bs-gutter-x: 0; /* Remove gutters para economizar espaço */
+    }
+}

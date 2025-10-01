@@ -1,0 +1,163 @@
+:root {
+    --primary-purple: #7B2CBF;
+    --light-purple: #9D4EDD;
+    --background-color: #F7F8FC;
+    --card-background: #FFFFFF;
+    --text-color: #5A5A5A;
+    --heading-color: #333333;
+    --border-radius: 20px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.07);
+    --transition-smooth: all 0.3s ease-in-out;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    max-width: 1100px;
+    width: 100%;
+    min-height: 650px;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+/* Coluna da Esquerda (Branding) */
+.login-branding {
+    background: linear-gradient(160deg, var(--primary-purple) 0%, var(--light-purple) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+}
+
+.branding-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.branding-content h2 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.branding-content p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* Coluna da Direita (Formulário) */
+.login-form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.text-purple {
+    color: var(--primary-purple);
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 1.2rem 1rem;
+    border: 1px solid #E9ECEF;
+    transition: var(--transition-smooth);
+}
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.15);
+    border-color: var(--primary-purple);
+}
+.form-floating > label {
+    color: #999;
+}
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+    color: var(--primary-purple);
+}
+
+.input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.input-group .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-radius: 12px;
+    border-left: 0;
+}
+#toggle-password {
+    border-color: #E9ECEF;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-purple);
+    border-color: var(--primary-purple);
+}
+.forgot-password-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+.forgot-password-link:hover {
+    color: var(--primary-purple);
+}
+
+.btn-login {
+    background: linear-gradient(90deg, var(--primary-purple) 0%, var(--light-purple) 100%);
+    border: none;
+    padding: 0.9rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(123, 44, 191, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(123, 44, 191, 0.3);
+}
+.btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    .login-branding {
+        display: none; /* Oculta a coluna da esquerda em telas menores */
+    }
+    .login-form-wrapper {
+        padding: 2rem;
+    }
+}

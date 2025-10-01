@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Painel de Gestão</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="login.style.css">
+</head>
+    <script>
+        // Desativa o clique com o botão direito
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Desativa atalhos de teclado comuns
+        document.onkeydown = function(e) {
+            // F12
+            if (e.keyCode == 123) {
+                return false;
+            }
+            // Ctrl+Shift+I
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+Shift+J
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+U
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        };
+    </script>
+<body>
+
+    <div class="login-container">
+        <div class="login-branding">
+            <div class="branding-content">
+                <i class="bi bi-bar-chart-line-fill display-1"></i>
+                <h2 class="mt-3">Bem-vindo(a) de volta!</h2>
+                <p>Acesse o seu Painel de Gestão.</p>
+            </div>
+        </div>
+
+        <div class="login-form-wrapper">
+            <div class="login-form">
+                <div class="logo-container text-center mb-4">
+                    <i class="bi bi-shield-lock-fill display-4 text-purple"></i>
+                </div>
+                <h3 class="text-center mb-2">Acesse sua Conta</h3>
+                <p class="text-center text-muted mb-4">Entre com suas credenciais para continuar.</p>
+
+                <form id="auth-form" novalidate>
+                    <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                        <label for="email"><i class="bi bi-envelope-fill me-2"></i>Email</label>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" placeholder="Senha" required>
+                            <label for="password"><i class="bi bi-lock-fill me-2"></i>Senha</label>
+                        </div>
+                        <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                            <i class="bi bi-eye-slash"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="remember-me">
+                            <label class="form-check-label" for="remember-me">
+                                Lembrar-me
+                            </label>
+                        </div>
+                       
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-login" type="submit">
+                            <span class="btn-text">Entrar</span>
+                            <div class="spinner-border spinner-border-sm d-none" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.script.js"></script>
+</body>
+</html>
