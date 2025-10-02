@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
 
-        // Altera o ícone do olho
         const icon = togglePasswordBtn.querySelector('i');
         icon.classList.toggle('bi-eye');
         icon.classList.toggle('bi-eye-slash');
@@ -22,9 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Função para lidar com o envio do formulário
     authForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Impede o envio real do formulário
+        event.preventDefault();
         
-        // Resetar UI
         errorMessageDiv.classList.add('d-none');
         loginButton.disabled = true;
         btnText.textContent = 'Verificando...';
@@ -33,23 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = emailInput.value;
         const password = passwordInput.value;
 
-        // Simulação de autenticação após 1.5 segundos
         setTimeout(() => {
+            // As credenciais no seu modelo são "admin" e "12345"
             if (email === 'admin' && password === '12345') {
-                // Sucesso na autenticação
                 btnText.textContent = 'Sucesso!';
-                
-                // **NOVA LINHA: Salva o estado de login no navegador**
                 sessionStorage.setItem('isLoggedIn', 'true');
-
-                // Redireciona para o painel principal
                 window.location.href = 'index.html'; 
             } else {
-                // Falha na autenticação
-                errorMessageDiv.textContent = 'Usuário ou senha inválidos. Tente novamente.';
+                errorMessageDiv.textContent = 'Usuário ou senha inválidos.';
                 errorMessageDiv.classList.remove('d-none');
                 
-                // Restaurar o botão
                 loginButton.disabled = false;
                 btnText.textContent = 'Entrar';
                 spinner.classList.add('d-none');

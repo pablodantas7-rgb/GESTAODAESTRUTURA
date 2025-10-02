@@ -1,192 +1,387 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Gestão Escolar v8</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlanGestec - Painel de Gestão</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <script>
-        // Desativa o clique com o botão direito
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // Desativa atalhos de teclado comuns
-        document.onkeydown = function(e) {
-            // F12
-            if (e.keyCode == 123) {
-                return false;
-            }
-            // Ctrl+Shift+I
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl+Shift+J
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl+U
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        };
-    </script>
-<body>
-    <script>
-        if (!sessionStorage.getItem('isLoggedIn')) {
-            window.location.href = 'login.html';
-        }
+      if (!sessionStorage.getItem("isLoggedIn")) {
+        window.location.href = "login.html";
+      }
     </script>
 
-    <div class="container-fluid">
-        <header class="header-clean">
-            <div class="header-title-container">
-                <h1 class="dashboard-title">Painel de Gestão Escolar</h1>
-                <p class="dashboard-subtitle">Visão geral dos indicadores chave</p>
-            </div>
-            <div class="header-controls">
-                <div class="input-group search-bar">
-                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar por escola, INEP ou SEC...">
-                </div>
-                <button id="logout-button" class="btn btn-logout" title="Sair">
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
-            </div>
-        </header>
+    <div id="print-header"></div>
+    <header class="header">
+      <div class="header-title-container">
+        <h1 class="dashboard-title">PlanGestec</h1>
+        <p class="dashboard-subtitle">Visão geral dos indicadores chave</p>
+      </div>
+      <div class="header-controls">
+        <div class="input-group search-bar">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Pesquisar por escola, INEP..."
+          />
+        </div>
+        <button id="logout-button" class="btn btn-icon" title="Sair">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </div>
+    </header>
 
-        <main>
-            <section class="row mb-3">
-                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-purple">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-circle bg-white-translucent"><i class="bi bi-piggy-bank text-white"></i></div>
-                                <div class="ms-3">
-                                    <p class="card-subtitle text-white-75">Saldo Inicial Total</p>
-                                    <h4 class="card-title-value text-white" id="totalSaldoInicial">R$ 0,00</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="main-container">
+      <main>
+        <section class="row mb-2">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card info-card card-purple h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle">
+                    <i class="bi bi-graph-up-arrow"></i>
+                  </div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Saldo Inicial Total</p>
+                    <h4 class="card-title-value" id="totalSaldoInicial">
+                      R$ 0,00
+                    </h4>
+                  </div>
                 </div>
-                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-red">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-circle bg-white-translucent"><i class="bi bi-clipboard-data text-white"></i></div>
-                                <div class="ms-3">
-                                    <p class="card-subtitle text-white-75">Saldo Comprometido</p>
-                                    <h4 class="card-title-value text-white" id="totalComprometido">R$ 0,00</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card info-card card-blue h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle">
+                    <i class="bi bi-file-earmark-text"></i>
+                  </div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Saldo Comprometido</p>
+                    <h4 class="card-title-value" id="totalComprometido">
+                      R$ 0,00
+                    </h4>
+                  </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-blue">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-circle bg-white-translucent"><i class="bi bi-wallet2 text-white"></i></div>
-                                <div class="ms-3">
-                                    <p class="card-subtitle text-white-75">Saldo Disponível Total</p>
-                                    <h4 class="card-title-value text-white" id="totalSaldoDisponivel">R$ 0,00</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card info-card card-green h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Saldo Disponível</p>
+                    <h4 class="card-title-value" id="totalSaldoDisponivel">
+                      R$ 0,00
+                    </h4>
+                  </div>
                 </div>
-            </section>
-            <section class="row mb-4">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-green">
-                        <div class="card-body"><div class="d-flex align-items-center"><div class="icon-circle bg-white-translucent"><i class="bi bi-pc-display-horizontal text-white"></i></div><div class="ms-3"><p class="card-subtitle text-white-75">Labs de Informática</p><h4 class="card-title-value text-white" id="labsImplantados">0 Implantados</h4></div></div></div>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card info-card card-orange h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle"><i class="bi bi-building"></i></div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Total de Escolas</p>
+                    <h4 class="card-title-value" id="totalEscolas">0</h4>
+                  </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-yellow">
-                        <div class="card-body"><div class="d-flex align-items-center"><div class="icon-circle bg-white-translucent"><i class="bi bi-lightbulb text-white"></i></div><div class="ms-3"><p class="card-subtitle text-white-75">Escritórios Criativos</p><h4 class="card-title-value text-white" id="escritoriosImplantados">0 Implantados</h4></div></div></div>
-                    </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="row mb-4">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div
+              class="card info-card card-project-green h-100 clickable-card"
+              data-project-key="labInformatica"
+              data-project-name="Laboratório de Informática"
+            >
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle">
+                    <i class="bi bi-pc-display"></i>
+                  </div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Labs de Informática</p>
+                    <h4 class="card-title-value" id="labsImplantados">
+                      0 Implantados
+                    </h4>
+                  </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-orange">
-                        <div class="card-body"><div class="d-flex align-items-center"><div class="icon-circle bg-white-translucent"><i class="bi bi-tree text-white"></i></div><div class="ms-3"><p class="card-subtitle text-white-75">Proj. Agroecológico</p><h4 class="card-title-value text-white" id="totalAgro">0 Implantados</h4></div></div></div>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div
+              class="card info-card card-project-yellow h-100 clickable-card"
+              data-project-key="escritoriosCriativos"
+              data-project-name="Escritórios Criativos"
+            >
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle"><i class="bi bi-lightbulb"></i></div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Escritórios Criativos</p>
+                    <h4 class="card-title-value" id="escritoriosImplantados">
+                      0 Implantados
+                    </h4>
+                  </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card info-card h-100 gradient-card-teal">
-                        <div class="card-body"><div class="d-flex align-items-center"><div class="icon-circle bg-white-translucent"><i class="bi bi-cpu text-white"></i></div><div class="ms-3"><p class="card-subtitle text-white-75">Lab. Robótica</p><h4 class="card-title-value text-white" id="totalRobotica">0 Implantados</h4></div></div></div>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div
+              class="card info-card card-project-orange h-100 clickable-card"
+              data-project-key="projetoAgroecologico"
+              data-project-name="Projeto Agroecológico"
+            >
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle"><i class="bi bi-tree"></i></div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Proj. Agroecológico</p>
+                    <h4 class="card-title-value" id="totalAgro">
+                      0 Implantados
+                    </h4>
+                  </div>
                 </div>
-            </section>
-
-            <section class="card data-card p-lg-4 p-3">
-                <div class="card-body p-0">
-                    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                        <h5 class="card-title mb-0">Detalhes das Escolas</h5>
-                        <div class="filter-container">
-                             <select id="municipioFilter" class="form-select shadow-sm">
-                                <option value="todos">Todos os Municípios</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-hover align-middle">
-                            <thead id="table-header">
-                                <tr>
-                                    <th class="school-name-header sortable-header" data-sort-key="escola">Escola <i class="bi sort-icon"></i></th>
-                                    <th class="d-none d-lg-table-cell sortable-header" data-sort-key="municipio">Município <i class="bi sort-icon"></i></th>
-                                    <th class="text-center d-none d-lg-table-cell sortable-header" data-sort-key="labInformatica" title="Laboratório de Informática"><i class="bi bi-pc-display-horizontal"></i> <i class="bi sort-icon"></i></th>
-                                    <th class="text-center d-none d-lg-table-cell sortable-header" data-sort-key="escritoriosCriativos" title="Escritórios Criativos"><i class="bi bi-lightbulb"></i> <i class="bi sort-icon"></i></th>
-                                    <th class="text-center d-none d-lg-table-cell sortable-header" data-sort-key="projetoAgroecologico" title="Projeto Agroecológico"><i class="bi bi-flower1"></i> <i class="bi sort-icon"></i></th>
-                                    <th class="text-center d-none d-lg-table-cell sortable-header" data-sort-key="labRobotica" title="Laboratório Robótica"><i class="bi bi-robot"></i> <i class="bi sort-icon"></i></th>
-                                    <th class="d-none d-lg-table-cell sortable-header" data-sort-key="saldoDisponivel">Saldo Disponível <i class="bi sort-icon"></i></th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="schoolTableBody"></tbody>
-                        </table>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div
+              class="card info-card card-project-teal h-100 clickable-card"
+              data-project-key="labRobotica"
+              data-project-name="Laboratório de Robótica"
+            >
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="icon-circle"><i class="bi bi-robot"></i></div>
+                  <div class="ms-3">
+                    <p class="card-subtitle">Lab. Robótica</p>
+                    <h4 class="card-title-value" id="totalRobotica">
+                      0 Implantados
+                    </h4>
+                  </div>
                 </div>
-            </section>
-        </main>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card data-card">
+          <div class="card-body">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h5 class="card-title mb-0">Escolas Cadastradas</h5>
+                <small class="text-muted" id="escolas-encontradas-counter"
+                  >0 escolas encontradas</small
+                >
+              </div>
+              <div class="filter-container">
+                <select id="municipioFilter" class="form-select">
+                  <option value="todos">Todos os Municípios</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead id="table-header">
+                  <tr>
+                    <th class="sortable-header" data-sort-key="escola">
+                      Escola <i class="bi sort-icon"></i>
+                    </th>
+                    <th class="sortable-header" data-sort-key="inep">
+                      INEP <i class="bi sort-icon"></i>
+                    </th>
+                    <th class="sortable-header" data-sort-key="sec">
+                      SEC <i class="bi sort-icon"></i>
+                    </th>
+                    <th class="sortable-header" data-sort-key="municipio">
+                      Município <i class="bi sort-icon"></i>
+                    </th>
+                    <th class="sortable-header" data-sort-key="saldoInicial">
+                      Saldo Inicial <i class="bi sort-icon"></i>
+                    </th>
+                    <th
+                      class="sortable-header"
+                      data-sort-key="valorComprometido"
+                    >
+                      Comprometido <i class="bi sort-icon"></i>
+                    </th>
+                    <th class="sortable-header" data-sort-key="saldoDisponivel">
+                      Disponível <i class="bi sort-icon"></i>
+                    </th>
+                    <th class="sortable-header" data-sort-key="statusConta">
+                      Status <i class="bi sort-icon"></i>
+                    </th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="schoolTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
 
-    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailsModalLabel"><i class="bi bi-buildings-fill me-2"></i> Detalhes da Unidade Escolar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="modalBodyContent"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary btn-print" id="print-details-btn">
-                        <i class="bi bi-printer-fill me-2"></i>Imprimir
-                    </button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="detailsModal"
+      tabindex="-1"
+      aria-labelledby="detailsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel">
+              <i class="bi bi-buildings-fill me-2"></i> Detalhes da Unidade
+              Escolar
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"><div id="detailsModalBodyContent"></div></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar</button
+            ><button
+              type="button"
+              class="btn btn-primary btn-print"
+              id="print-details-btn"
+            >
+              <i class="bi bi-printer-fill me-2"></i>Imprimir Detalhes
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="projectListModal"
+      tabindex="-1"
+      aria-labelledby="projectListModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectListModalTitle">
+              Unidades do Projeto
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul
+              class="list-group list-group-flush"
+              id="projectListModalBody"
+            ></ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar</button
+            ><button
+              type="button"
+              class="btn btn-primary btn-print"
+              id="print-project-list-btn"
+            >
+              <i class="bi bi-printer-fill me-2"></i>Imprimir Lista
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const printButton = document.getElementById('print-details-btn');
-            if(printButton) {
-                printButton.addEventListener('click', () => {
-                    window.print();
-                });
-            }
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        const handlePrint = (modalSelector) => {
+          const modalEl = document.querySelector(modalSelector);
+          if (!modalEl) return;
+
+          const printHeader = document.getElementById("print-header");
+          const modalTitle = modalEl.querySelector(".modal-title").textContent;
+
+          let quantity = 1; // Para o modal de detalhes
+          if (modalSelector === "#projectListModal") {
+            quantity = modalEl.querySelectorAll(".list-group-item").length;
+          }
+
+          const now = new Date();
+          const dateTimeString = now.toLocaleString("pt-BR", {
+            dateStyle: "short",
+            timeStyle: "short",
+          });
+
+          printHeader.innerHTML = `
+                    <div class="print-header-top">
+                        <span>${dateTimeString}</span>
+                        <span>PlanGestec - Painel de Gestão</span>
+                    </div>
+                    <h2 class="print-header-title">${modalTitle}</h2>
+                    <p class="print-header-quantity">${quantity} unidade${
+            quantity > 1 ? "s" : ""
+          } listada${quantity > 1 ? "s" : ""}</p>
+                `;
+
+          window.print();
+        };
+
+        document
+          .getElementById("print-details-btn")
+          ?.addEventListener("click", () => handlePrint("#detailsModal"));
+        document
+          .getElementById("print-project-list-btn")
+          ?.addEventListener("click", () => handlePrint("#projectListModal"));
+      });
     </script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
