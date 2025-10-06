@@ -103,36 +103,34 @@ body {
   box-shadow: var(--shadow);
   transition: var(--transition-smooth);
   color: white;
+  padding: 1rem;
 }
 .info-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
 }
 .info-card .card-body {
-  padding: 1.5rem;
+  padding: 0.5rem;
+  position: relative;
 }
 .card-subtitle {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   margin-bottom: 0.5rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
 }
 .card-title-value {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 600;
 }
-.icon-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  font-size: 1.5rem;
+.card-icon {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.5rem;
+  opacity: 0.15;
 }
-
-/* Card Palettes */
 .clickable-card {
   cursor: pointer;
 }
@@ -159,6 +157,14 @@ body {
 }
 .card-project-teal {
   background-color: var(--project-teal);
+}
+.data-card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+.data-card .card-body {
+  padding: 2rem;
 }
 
 /* Data Table Card */
@@ -517,6 +523,7 @@ body {
     border: none;
     border-bottom: 1px solid #f2f4f6;
     text-align: right;
+    flex-direction: column;
   }
   .table tr td:last-child {
     border-bottom: none;
@@ -525,7 +532,6 @@ body {
     content: attr(data-label);
     font-weight: 600;
     color: var(--heading-color);
-    padding-right: 1rem;
     text-align: left;
   }
   .table td:first-child {
