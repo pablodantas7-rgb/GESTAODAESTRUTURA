@@ -132,7 +132,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <td data-label="SEC">${school.sec}</td>
                 <td data-label="NTE">${school.nte}</td>
                 <td data-label="Município">${school.municipio}</td>
-                <td data-label="Escola" class="escola-mobile"><strong>${school.escola}</strong></td>
+                <td data-label="Escola" class="escola-mobile"><strong>${
+                  school.escola
+                }</strong></td>
                 <td data-label="Saldo Inicial">${formatCurrency(
                   school.saldoInicial.total
                 )}</td>
@@ -397,9 +399,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (!projectListModal) return;
       const projectKey = card.dataset.projectKey;
       const projectName = card.dataset.projectName;
-      const schoolsWithProject = schoolData.filter(
+
+      // ***** LINHA ALTERADA *****
+      // Antes: const schoolsWithProject = schoolData.filter(...
+      // Agora usa 'currentlyDisplayedData' para respeitar os filtros (NTE/Município/Busca)
+      const schoolsWithProject = currentlyDisplayedData.filter(
         (school) => (school[projectKey] || "").toUpperCase() === "IMPLANTADO"
       );
+      // **************************
+
       projectListModalTitle.textContent = `Unidades com ${projectName} Implantado`;
       projectListModalBody.innerHTML = "";
       if (schoolsWithProject.length === 0) {
